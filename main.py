@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import os
 import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -49,6 +50,8 @@ def predict():
 
     return jsonify(predictions.tolist())
 
+
 if __name__ == '__main__':
-    app.run(port=8000)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(port=port)
 
