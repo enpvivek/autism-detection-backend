@@ -5,5 +5,4 @@ numpy
 Keras
 flask-cors
 tensorflow
-uvicorn
 gunicorn
