@@ -21,6 +21,10 @@ columns = ['A1_Score', 'A2_Score', 'A3_Score', 'A4_Score', 'A5_Score', 'A6_Score
            'ethnicity', 'jundice', 'austim', 'contry_of_res', 'used_app_before',
            'result', 'age_desc', 'relation', 'Class/ASD']
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
@@ -51,7 +55,7 @@ def predict():
     return jsonify(predictions.tolist())
 
 
-# if __name__ == '__main__':
-#     port = int(os.environ.get('PORT', 8000))
-#     app.run(port=port)
+if __name__ == '__main__':
+    #port = int(os.environ.get('PORT', 8000))
+    app.run(debug=True)
 

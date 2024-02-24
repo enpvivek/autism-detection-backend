@@ -6,3 +6,4 @@ Keras
 flask-cors
 tensorflow
 uvicorn
+gunicorn
