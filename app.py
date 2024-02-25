@@ -1,19 +1,16 @@
 from flask import Flask, request, jsonify
 import os
-import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import numpy as np
-from keras.models import Sequential
-from keras.layers import SimpleRNN, Dense
+from keras.models import load_model
 from flask_cors import CORS
-
 app = Flask(__name__)
 CORS(app)
 
 # Load the trained RNN model from the pickled file
-with open('best_model.pkl', 'rb') as f:
-    model_rnn = pickle.load(f)
+# with open('best_model.pkl', 'rb') as f:
+model_rnn = load_model('best_model.h5')
 
 # Define column names based on your dataset
 columns = ['A1_Score', 'A2_Score', 'A3_Score', 'A4_Score', 'A5_Score', 'A6_Score',
@@ -55,7 +52,7 @@ def predict():
     return jsonify(predictions.tolist())
 
 
-# if __name__ == '__main__':
-#     port = int(os.environ.get('PORT', 8000))
-#     app.run(port=port,debug=True)
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5051))
+    app.run(port=port,debug=True)
 
